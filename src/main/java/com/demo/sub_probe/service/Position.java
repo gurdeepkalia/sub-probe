@@ -7,7 +7,14 @@ public record Position(int x, int y) {
      * @return : new position
     * */
     public Position move(Direction direction, boolean forward) {
-        //TODO : logic for movement
-        return new Position(0,0);
+        int deltaX = direction.getDx();
+        int deltaY = direction.getDy();
+
+        if (!forward) {
+            deltaX = (-1) * deltaX;
+            deltaY = (-1) * deltaY;
+        }
+
+        return new Position(x + deltaX,y + deltaY);
     }
 }

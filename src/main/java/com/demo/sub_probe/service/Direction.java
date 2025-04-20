@@ -6,9 +6,10 @@ package com.demo.sub_probe.service;
  */
 public enum Direction {
     NORTH(0, 1),
-    SOUTH(0, -1),
     EAST(1, 0),
+    SOUTH(0, -1),
     WEST(-1, 0);
+
 
     private final int dx;
     private final int dy;
@@ -27,13 +28,15 @@ public enum Direction {
     }
 
     public Direction turnLeft() {
-        //TODO : logic for turning left
-        return null;
+        //logic for turning left
+        int leftDirectionOrdinal = (this.ordinal() + 3) % 4;
+        return Direction.values()[leftDirectionOrdinal];
     }
 
     public Direction turnRight() {
-        //TODO : logic for turning right
-        return null;
+        //logic for turning right
+        int rightDirectionOrdinal = (this.ordinal() + 1) % 4;
+        return Direction.values()[rightDirectionOrdinal];
     }
 }
 
