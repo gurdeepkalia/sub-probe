@@ -21,7 +21,27 @@ public class Probe {
     }
 
     public void move(Command command) {
-        //TODO : logic to move as per command goes here
+        //logic to move as per command goes here
+        switch (command) {
+            case FORWARD -> attemptMove(true);
+            case BACKWARD -> attemptMove(false);
+            case LEFT -> direction = direction.turnLeft();
+            case RIGHT -> direction = direction.turnRight();
+        }
+    }
+
+    private void attemptMove(boolean forward) {
+        Position next = position.move(direction, forward);
+
+        if (!grid.isWithinBounds(next)) {
+            return; // stay in place if out of bounds
+        }
+        if (grid.hasObstacle(next)) {
+            return; // stay in place if obstacle present
+        }
+
+        position = next;
+        visitedPath.add(position);
     }
 
     public Position getPosition() {
