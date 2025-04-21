@@ -14,15 +14,31 @@ public class ProbeService {
     private Probe probe;
 
     public void initProbe(ProbeInitRequest req) {
-        //TODO : probe initialization logic goes here
+        //probe initialization logic goes here
+        Grid grid = new Grid(req.gridWidth, req.gridHeight);
+        if (req.obstacles != null) {
+            req.obstacles.forEach(grid::addObstacle);
+        }
+        Position start = new Position(req.startX, req.startY);
+        Direction dir = Direction.valueOf(req.direction);
+        this.probe = new Probe(grid, start, dir);
     }
 
     public void processCommands(ProbeCommandRequest req) {
-        //TODO : process command logic goes here
+        //process command logic goes here
+        if (probe == null) throw new IllegalStateException("Probe not initialized");
+        for (Command cmd : req.commands) {
+            probe.move(cmd);
+        }
     }
 
     public ProbeStatusResponse getStatus() {
-        //TODO : probe status fetch logic goes here
-        return null;
+        //probe status fetch logic goes here
+        if (probe == null) throw new IllegalStateException("Probe not initialized");
+        return new ProbeStatusResponse(
+                probe.getPosition(),
+                probe.getDirection(),
+                probe.getVisitedPath()
+        );
     }
 }
