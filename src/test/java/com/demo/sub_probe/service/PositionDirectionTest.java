@@ -22,12 +22,12 @@ class PositionDirectionTest {
 
     @Test
     void testTurnLeftFromNorth() {
-        assertEquals(Direction.WEST, Direction.NORTH.turnLeft());
+        assertEquals(Direction.WEST, Direction.NORTH.turn(false));
     }
 
     @Test
     void testTurnRightFromNorth() {
-        assertEquals(Direction.EAST, Direction.NORTH.turnRight());
+        assertEquals(Direction.EAST, Direction.NORTH.turn(true));
     }
 
 }

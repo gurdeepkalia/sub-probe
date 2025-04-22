@@ -27,7 +27,15 @@ public enum Direction {
         return dy;
     }
 
-    public Direction turnLeft() {
+    public Direction turn(boolean right) {
+        return switch (this) {
+            case NORTH -> right ? EAST : WEST;
+            case EAST -> right ? SOUTH : NORTH;
+            case SOUTH -> right ? WEST : EAST;
+            case WEST -> right ? NORTH : SOUTH;
+        };
+    }
+/*    public Direction turnLeft() {
         //logic for turning left
         int leftDirectionOrdinal = (this.ordinal() + 3) % 4;
         return Direction.values()[leftDirectionOrdinal];
@@ -37,6 +45,6 @@ public enum Direction {
         //logic for turning right
         int rightDirectionOrdinal = (this.ordinal() + 1) % 4;
         return Direction.values()[rightDirectionOrdinal];
-    }
+    }*/
 }
 

@@ -25,8 +25,8 @@ public class Probe {
         switch (command) {
             case FORWARD -> attemptMove(true);
             case BACKWARD -> attemptMove(false);
-            case LEFT -> direction = direction.turnLeft();
-            case RIGHT -> direction = direction.turnRight();
+            case LEFT -> direction = direction.turn(false);
+            case RIGHT -> direction = direction.turn(true);
         }
     }
 
